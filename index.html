@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stilos.css">
+</head>
+<body>
+    
+    <div class="contenedor">
+        <h1>calculador de pagos mensuales de un prestamo</h1>
+        <form action="" id="form">
+        <div class="formulario">
+            <label for="user"> ingrese nombre</label>
+            <input type="text" name="nombre" id="user"> 
+            <div class="error"></div>
+
+        </div >
+        <div class="formulario">
+            <label for="monto"> ingrese monto</label>
+            <input type="text" name="nombre" id="monto" value="1" min="1" max="200000"> 
+            <div class="error"></div>
+
+        </div >
+        <div class="formulario2">
+            <h2>cuotas</h2>
+            <label ><input type="radio" name="cuotas" id="uno" value="1" checked> 1 cuota, sin interes </label>
+            <label ><input type="radio" name="cuotas" id="uno" value="1" checked> 3 cuotas, 30% interes </label>
+            <label ><input type="radio" name="cuotas" id="uno" value="1" checked> 6 cuotas, 45% interes </label>
+            <label ><input type="radio" name="cuotas" id="uno" value="1" checked> 12 cuotas, 50& interes </label>
+        </div >
+    </form>
+        <button type="submit">calcular</button>
+        
+    </div>
+
+   <script src="/app.js"> </script>
+</body>
+</html>
