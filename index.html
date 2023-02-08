@@ -6,36 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="stilos.css">
+    
 </head>
-<body>
+<body onload="mostrarConsulta()">
     
     <div class="contenedor">
+        <div id="last"></div>
         <h1>calculador de pagos mensuales de un prestamo</h1>
-        <form action="" id="form">
+        
+    <form action="" id="form" name="form">
+        <div  id="msj-error"></div>
         <div class="formulario">
             <label for="user"> ingrese nombre</label>
-            <input type="text" name="nombre" id="user"> 
-            <div class="error"></div>
+            <input type="text" name="nombre" id="user" value=""> 
+           
 
         </div >
         <div class="formulario">
             <label for="monto"> ingrese monto</label>
-            <input type="text" name="nombre" id="monto" value="1" min="1" max="200000"> 
+            <input type="number" name="nombre" id="monto" value= 0 min="1" max="500000" >
             <div class="error"></div>
 
         </div >
-        <div class="formulario2">
+        <div class="formulario2" onclick="verR()">
             <h2>cuotas</h2>
-            <label ><input type="radio" name="cuotas" id="uno" value="1" checked> 1 cuota, sin interes </label>
-            <label ><input type="radio" name="cuotas" id="uno" value="1" checked> 3 cuotas, 30% interes </label>
-            <label ><input type="radio" name="cuotas" id="uno" value="1" checked> 6 cuotas, 45% interes </label>
-            <label ><input type="radio" name="cuotas" id="uno" value="1" checked> 12 cuotas, 50& interes </label>
+            
+           <label><input type="radio" name="cuotas" id="uno" value="1" checked > 1 cuota, sin interes </label>
+           <label>  <input type="radio" name="cuotas" id="uno1" value="3"> 3 cuotas, 30% interes </label>
+           <label>  <input type="radio" name="cuotas" id="uno2" value="6"> 6 cuotas, 45% interes </label>
+           <label> <input type="radio" name="cuotas" id="uno3" value="12"> 12 cuotas, 50& interes </label>
+           <div id="result"></div>
         </div >
-    </form>
-        <button type="submit">calcular</button>
-        
-    </div>
 
-   <script src="app.js"> </script>
-</body>
+        
+        
+        
+    </form>
+    <button type="submit" onclick="calcularP()" >calcular</button>
+   
+    <div class="resumen" style="display: none;"></div>
+    <div class="resultado" style="display: none;"></div>
+    
+    </div>
+    
+   
+   
+    <script src="app.js"> </script>
+   </body>
 </html>
