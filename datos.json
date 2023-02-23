@@ -1,0 +1,6 @@
+[
+    {"meses": 12, "interes": 0.5 },
+    {"meses": 6, "interes": 0.45},
+    {"meses": 3, "interes": 0.3},
+    {"meses": 1, "interes": 0}
+  ]

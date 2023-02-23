@@ -1,11 +1,11 @@
 //implementacion local storage, que muestre un div con las ultimas consultas
 
-let nConsultas =JSON.parse(localStorage.getItem("nConsultas"));
-if(nConsultas){
-  localStorage.setItem("nConsultas",JSON.stringify(nConsultas));
-}else{
-  localStorage.setItem("nConsultas",JSON.stringify([]));
-}
+let nConsultas = JSON.parse(localStorage.getItem("nConsultas")) || [];
+//if(nConsultas){
+  //localStorage.setItem("nConsultas",JSON.stringify(nConsultas));
+//}else{
+  //localStorage.setItem("nConsultas",JSON.stringify([]));
+//}
 const mostrarConsulta = ()=>{
   let lastHTML="";
   let nConsultas = JSON.parse(localStorage.getItem("nConsultas"));
@@ -23,17 +23,30 @@ const mostrarConsulta = ()=>{
   document.querySelector("#last").innerHTML=lastHTML;
 }
 
-let total, montoCinteres;
-// Array con los meses e intereses
-  let cargo =  [
-    {meses: 12, interes: 0.5 },
-    {meses: 6, interes: 0.45},
-    {meses: 3, interes: 0.3},
-    {meses: 1, interes: 0},
-  ];
+let total, montoCinteres, resp;
+
+  
   
   
   let divResultado = document.querySelector(".resultado");
+  let cargo =[]
+  
+  let showO = ()=>{
+    for (let prop in cargo){
+      console.log(prop);
+      console.log(cargo[prop]);
+    }
+  }
+  
+    fetch("datos.json")
+    .then((res)=> res.json())
+    .then((data)=>{
+     
+     cargo = data;
+     showO()
+    })
+      
+   
   
   
   
@@ -52,33 +65,37 @@ let total, montoCinteres;
 
 
 
-const mostrarError = (elemento, mensaje)=>{
-  let divError=document.getElementById(elemento);
- divError.innerHTML= `<p >${mensaje}</p>`;
-   setTimeout(()=>{ divError.innerHTML="";},3000);
- }
+
 
 //let porcentaje = cargo.find(findInt).interes;
-//function findInt(element){
- // console.log(element.meses === verR())
- // return element.meses === verR();
+function findInt(element){
+ console.log(element.meses === verR())
+ return element.meses === verR();
   
-//}
+}
 
 
 //console.log(porcentaje)
 // funcion realizar los cañculos necesarios
 function calcularP () {
+ 
   let valor=verR();
   let cantidad = parseInt(document.querySelector("#monto").value);
   let ingreseNombre = document.querySelector("#user").value;
+  
   let porcentaje = cargo.find(nume =>nume.meses == valor).interes;  
   let divResumen= document.querySelector(".resumen");
   divResumen.style.display="none"
 
   if (ingreseNombre.trim() === "" || cantidad == "") {
-    
-    mostrarError("msj-error", "Ingresar datos correctos");
+    Swal.fire({
+      title: 'Algo salio mal',
+      text: 'Ingrese los datos de forma correcta',
+      icon: 'error',
+      showCancelButton: false,
+      showConfirmButton: false
+  })
+    //mostrarError("msj-error", "Ingresar datos correctos");
   return;
   }
 
@@ -88,7 +105,7 @@ function calcularP () {
   
    let total= (cantidad + cantidad * porcentaje) / valor;
    //montoCinteres = cantidad+cantidad*porcentaje;
-   let consultas = {cantidad, ingreseNombre, totalInteres, montoC, total}
+   let consultas = {cantidad, ingreseNombre, totalInteres, montoC, total, valor}
   nConsultas.push(consultas);
   localStorage.setItem("nConsultas", JSON.stringify(nConsultas));
   document.querySelector("#form").reset();
@@ -122,64 +139,3 @@ console.log(total)
    
   } 
   
-
-  
-
-   //let total=calcularP( )
-
- 
-   
-
- 
-
- //mostar error cuando no se ingrese el nombre y monto correctos  
-
-
-
-//document.querySelector(".mensaje-error").style.display="";
-
-
-
-
-
-
-//for (let i = 1; i <= 5; i++) {
-  
-
-  
-
-  
-
-  
-  //let cuotas = Number(document.querySelector("input[name=cuotas]:checked"));
-  
-  //let cuotas= Number(document.getElementById("result").innerHTML);
-  
- //let porcentaje = cargo.find(nume =>nume.meses == cuotas).interes;
-    
- //let cuotas = document.querySelector("input[type='radio'][name=cuotas]:checked").value;
-  //let cuotas = document.forms.form.elements.value
-  
-
- 
-
-
-  //alert("Numero de consulta: " + i );
-  
- 
-  
-  
-
-//let total=calcularP(cantidad, valor, porcentaje)
-
-  
-  
-
-       
-  
-
-//alert("El CFT es del " + (porcentaje*100) + " % " +" Monto Total con intereses $" + (cantidad + cantidad * porcentaje));
-
-//alert("Monto a pagar por mes $ " +total.toFixed(2));
-
-//}
